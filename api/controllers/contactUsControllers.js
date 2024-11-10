@@ -20,22 +20,32 @@ const userForm = require("../models/userForm");
     const {email} = req.body;
 
     try {
-        validation = await pool.query("SELECT email FROM user_subscription where email = ($1) LIMIT 1", [email]);
+        validation = await pool.query("SELECT * FROM user_subscription where email = ($1) LIMIT 1", [email]);
         console.log('check email:', validation);
 
-        if(validation.rows.length > 0){
-          res.status(500).json({ error: "Email already subscribed" });
+        if(validation.rows.length > 0 && validation.rows[0].status == 1){
+            res.status(500).json({ error: "Email already subscribed" });
         }
         else{
-          const result = await pool.query(
-            "INSERT INTO user_subscription (email) VALUES ($1) RETURNING *",
-            [email]
-            );
-            console.log('Subscription created:', result);
-    
-            res.status(201).json(result.rows[0]);
+          if(validation.rows.length > 0 && validation.rows[0].status == 0){
+            const result = await pool.query(
+              "UPDATE user_subscription SET status = 1 WHERE email = ($1) RETURNING *",
+              [email]
+              );
+      
+              res.status(201).json(result.rows[0]);
+          }
+          else{
+            const result = await pool.query(
+              "INSERT INTO user_subscription (email) VALUES ($1) RETURNING *",
+              [email]
+              );
+              console.log('Subscription created:', result);
+      
+              res.status(201).json(result.rows[0]);
+          }
         }
-        
+
         } 
     catch (error) {
         console.error("Error inserting Subscription:", error);
