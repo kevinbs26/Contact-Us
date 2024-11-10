@@ -1,4 +1,4 @@
-CREATE DATABASE ContactUsDB;
+CREATE DATABASE "ContactUsDB";
 
 CREATE TABLE user_form(
 	id SERIAL primary key,
