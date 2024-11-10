@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .  # Use the Dockerfile in the root of the project
+    ports:
+      - "4000:4000"  # Map port 4000 on the host to port 4000 in the container (frontend)
+    command: npm start
+    environment:
+      NODE_ENV: production  # Set environment to production
+  backend:
+    build:
+      context: .  # Use the Dockerfile in the root of the project
+    ports:
+      - "3000:3000"  # Map port 4000 on the host to port 4000 in the container (frontend)
+    command: node app.js
+    env_file:
+      - .env 

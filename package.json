@@ -1,0 +1,36 @@
+{
+  "name": "contact-us-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:next\" \"npm run dev:node\"",
+    "dev:next": "next dev -p 4000",
+    "dev:node": "node app.js",
+    "build": "next build",
+    "start": "next start -p 4000",
+    "start:node": "node app.js",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "next": "^13.0.3",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sequelize": "^6.37.5",
+    "sweetalert2": "^11.14.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14"
+  }
+}
