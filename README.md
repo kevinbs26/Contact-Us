@@ -15,6 +15,5 @@ Setup Env
 
 ## How to run:
 - git clone https://github.com/kevinbs26/Contact-Us.git
-- cd Contact-Us-DB
+- cd Contact-Us
 - docker-compose up -d
-

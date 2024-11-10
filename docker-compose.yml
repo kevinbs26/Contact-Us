@@ -13,7 +13,7 @@ services:
     build:
       context: .  # Use the Dockerfile in the root of the project
     ports:
-      - "3000:3000"  # Map port 4000 on the host to port 4000 in the container (frontend)
+      - "3000:3000"  # Map port 3000 on the host to port 3000 in the container (backend)
     command: node app.js
     env_file:
       - .env 
